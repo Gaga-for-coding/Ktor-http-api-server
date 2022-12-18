@@ -13,9 +13,9 @@ fun Route.orderRouting(){
         }
     }
 
-    get("{id?}"){
-        val id = call.parameters["id"] ?: return@get call.respondText("Bad Request", status = HttpStatusCode.BadRequest)
-        val order = orderStorage.find { it.number == id } ?: return@get call.respondText("Not Found", status = HttpStatusCode.NotFound)
+    get("order/{id?}"){
+        val orderId = call.parameters["id"] ?: return@get call.respondText("Bad Request", status = HttpStatusCode.BadRequest)
+        val order = orderStorage.find { it.number == orderId } ?: return@get call.respondText("Not Found", status = HttpStatusCode.NotFound)
         call.respond(order)
     }
 }

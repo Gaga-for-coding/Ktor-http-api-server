@@ -7,7 +7,7 @@ val orderStorage = listOf(Order("2022-18-12", listOf(
     OrderItem("Fufu with palm soup", 3, 67.00),
     OrderItem("Club Beer", 10, 12.99),
     OrderItem("Vody", 7, 16.99)
-)), Order("2022-18-12", listOf(
+)), Order("2022-18-13", listOf(
     OrderItem("Fried Rice with Chicken", 1, 50.00),
     OrderItem("Fufu with light soup", 5, 77.00),
     OrderItem("Star Beer", 13, 12.99),
