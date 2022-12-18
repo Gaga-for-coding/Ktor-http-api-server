@@ -27,12 +27,18 @@ fun Route.customerRouting(){
             call.respond(customer)
         }
         post {
-            val customer = call.receive<Customer>()
+            val customer = call.receive<Customer>() //automatically deserializes the JSON req body into a Kotlin Customer object
             customerStorage.add(customer)
             call.respondText("Customer stored correctly", status = HttpStatusCode.Created)
         }
         delete("{id?}"){
+            val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
 
+            if (customerStorage.removeIf { it.id == id }){
+                call.respondText("Customer removed correctly", status = HttpStatusCode.Accepted)
+            } else {
+                call.respondText("Id not found", status = HttpStatusCode.NotFound)
+            }
         }
     }
 }
